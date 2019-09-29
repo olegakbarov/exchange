@@ -1,12 +1,12 @@
 import {
   ActionTypes as AT,
-  Currency
+  CurrencyCode
 } from '../enums';
 
 export type UpdateAccount = {
   type: AT.UpdateAccount,
   payload: {
-    currency: Currency
+    currency: CurrencyCode
     value: number
   }
 };

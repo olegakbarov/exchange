@@ -1,8 +1,14 @@
-import { Currency } from "./enums"
+import { CurrencyCode } from "./enums"
 
 export type AccountState = {
-  [key in keyof typeof Currency]: number
+  [key in CurrencyCode]: number
 }
+
+export type RatesState = {
+  [key in CurrencyCode]: {
+    [key in CurrencyCode]: number
+  }
+} | {}
 
 type State = AccountState
 

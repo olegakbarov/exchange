@@ -1,6 +1,6 @@
 import * as React from 'react';
 import thunk from 'redux-thunk';
-import { applyMiddleware, createStore, combineReducers, Store } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import reducers from './reducers';
 import Exchange from './routes/Exchange' 
@@ -14,9 +14,10 @@ const middleware =
         createLogger({ collapsed: true, duration: true, diff: true }),
       ];
 
-const store: Store = applyMiddleware(...middleware)(
-  createStore
-)(combineReducers({ ...reducers }));
+const store = createStore(
+  combineReducers(reducers), 
+  applyMiddleware(...middleware)
+)
 
 const App: React.FC = () => {
   return (

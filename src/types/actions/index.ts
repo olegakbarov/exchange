@@ -1,2 +1,2 @@
 export * from './account';
-// export * from './rates';
+export * from './rates';

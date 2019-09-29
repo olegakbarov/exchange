@@ -1,18 +1,18 @@
 import { Action } from 'redux';
 import { Reducer } from '../types/redux';
-import { AsyncActionStatus } from '../types/asyncActions';
+// import { AsyncActionStatus } from '../types/asyncActions';
 
 type RootReducer<S, A extends Action = Action> = {
   [type: string]: Reducer<S, A> 
 };
 
-type AsyncAction = Action & {
-  status: AsyncActionStatus;
-};
+// type AsyncAction = Action & {
+//   status: AsyncActionStatus;
+// };
 
-function isAsyncAction(action: Action): action is AsyncAction {
-  return action.hasOwnProperty('status');
-}
+// function isAsyncAction(action: Action): action is AsyncAction {
+//   return action.hasOwnProperty('status');
+// }
 
 export default function createReducer<S extends {}, A extends Action = Action>(
   reducerName: string,
@@ -30,9 +30,9 @@ export default function createReducer<S extends {}, A extends Action = Action>(
   let reducer: Reducer<S, A> | undefined;
 
   if (reducerOrMap && typeof reducerOrMap !== 'function') {
-    if (isAsyncAction(action)) {
-      reducer = reducerOrMap[action.status];
-    }
+    // if (isAsyncAction(action)) {
+    //   reducer = reducerOrMap[action.status];
+    // }
   } else {
     reducer = reducerOrMap;
   }
