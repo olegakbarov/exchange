@@ -1,7 +1,7 @@
-import account from './account';
-import rates from './rates';
+import account from "./account";
+import rates from "./rates";
 
 export default {
   account,
   rates
-}
+};

@@ -1,9 +1,7 @@
-import * as A from '../types/actions';
-import {
-  ActionTypes as AT, CurrencyCode,
-} from '../types/enums';
-import { AccountState } from '../types/states';
-import createReducer from '../utils/createReducer';
+import * as A from "../types/actions";
+import { ActionTypes as AT, CurrencyCode } from "../types/enums";
+import { AccountState } from "../types/states";
+import createReducer from "../utils/createReducer";
 
 const DEFAULT_STATE: Record<CurrencyCode, number> = {
   USD: 100,
@@ -38,23 +36,26 @@ const DEFAULT_STATE: Record<CurrencyCode, number> = {
   SGD: 0,
   THB: 0,
   TRY: 0,
-  ZAR: 0,
+  ZAR: 0
 };
 
-const update = (state: AccountState, { payload: { currency, value }}: A.AccountAction) => ({
+const update = (
+  state: AccountState,
+  { payload: { currency, value } }: A.AccountAction
+) => ({
   ...state,
   [currency]: value
-})
+});
 
 export default function account(
   state: AccountState = DEFAULT_STATE,
   action: A.AccountAction
 ): AccountState {
   return createReducer(
-    'account',
+    "account",
     {
-      [AT.UpdateAccount]: update,
-    }, 
+      [AT.UpdateAccount]: update
+    },
     state,
     action
   );

@@ -1,8 +1,8 @@
-import { CurrencyCode } from "./enums"
+import { CurrencyCode } from "./enums";
 
 export interface ApiResponse {
-  base: CurrencyCode
+  base: CurrencyCode;
   rates: {
-    [key in CurrencyCode]: number
-  }
+    [key in CurrencyCode]: number;
+  };
 }

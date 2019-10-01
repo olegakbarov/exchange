@@ -1,9 +1,9 @@
-import { Action } from 'redux';
-import { Reducer } from '../types/redux';
+import { Action } from "redux";
+import { Reducer } from "../types/redux";
 // import { AsyncActionStatus } from '../types/asyncActions';
 
 type RootReducer<S, A extends Action = Action> = {
-  [type: string]: Reducer<S, A> 
+  [type: string]: Reducer<S, A>;
 };
 
 // type AsyncAction = Action & {
@@ -21,7 +21,7 @@ export default function createReducer<S extends {}, A extends Action = Action>(
   action: A
 ): S {
   Object.keys(reducers).forEach(
-    a => !a && console.error('Undefined reducer found!')
+    a => !a && console.error("Undefined reducer found!")
   );
 
   let restoredState = state;
@@ -29,7 +29,7 @@ export default function createReducer<S extends {}, A extends Action = Action>(
   const reducerOrMap = reducers[action.type];
   let reducer: Reducer<S, A> | undefined;
 
-  if (reducerOrMap && typeof reducerOrMap !== 'function') {
+  if (reducerOrMap && typeof reducerOrMap !== "function") {
     // if (isAsyncAction(action)) {
     //   reducer = reducerOrMap[action.status];
     // }

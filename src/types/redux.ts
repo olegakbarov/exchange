@@ -1,6 +1,6 @@
-import { Action, AnyAction, Dispatch } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { RootState } from './states';
+import { Action, AnyAction, Dispatch } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { RootState } from "./states";
 
 export type DA<T = void, A extends Action = AnyAction> = (
   dispatch: Dispatch<A>,

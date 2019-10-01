@@ -1,14 +1,11 @@
-import {
-  ActionTypes as AT,
-  CurrencyCode
-} from '../enums';
+import { ActionTypes as AT, CurrencyCode } from "../enums";
 
 export type UpdateAccount = {
-  type: AT.UpdateAccount,
+  type: AT.UpdateAccount;
   payload: {
-    currency: CurrencyCode
-    value: number
-  }
+    currency: CurrencyCode;
+    value: number;
+  };
 };
 
-export type AccountAction = UpdateAccount
+export type AccountAction = UpdateAccount;
