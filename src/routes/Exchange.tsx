@@ -6,31 +6,31 @@ import { ApiResponse } from '../types/api'
 import { RootState } from '../types/states'
 
 const Exchange = () => {
-  const rates = useSelector((state: RootState) => state.rates)
   const dispatch = useDispatch()
 
-  const [isPolling, startPolling] = usePolling({
+  const [isPolling] = usePolling({
     url: 'https://api.exchangeratesapi.io/latest',
     onSuccess: (resp: ApiResponse) => {
       dispatch(updateRates(resp))
     },
-    onFailure: (args) => console.log(args)
+    onError: (err) => console.error(err)
   })
-
-  // console.log('rendered Exchange!')
-  // console.log(rates)
-
-  React.useEffect(() => {
-    startPolling()
-  }, [])
 
   return (
     <div>
       {isPolling ? 'online' : 'offline'}
-      <pre>
-        {JSON.stringify(rates)}
-      </pre>
+      <Table />
     </div>
+  )
+}
+
+const Table = () => {
+  const rates = useSelector((state: RootState) => state.rates)
+
+  return (
+    <pre>
+      {JSON.stringify(rates)}
+    </pre>
   )
 }
 

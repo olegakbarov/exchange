@@ -19,7 +19,7 @@ const store = createStore(
   applyMiddleware(...middleware)
 )
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Provider store={store}>
       <Exchange />
