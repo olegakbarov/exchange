@@ -1,8 +1,3 @@
-export enum ActionTypes {
-  UpdateAccount = "UPDATE_ACCOUNT",
-  UpdateRates = "UPDATE_RATES"
-}
-
 export type CurrencyCode =
   | "USD"
   | "EUR"
@@ -37,3 +32,8 @@ export type CurrencyCode =
   | "THB"
   | "TRY"
   | "ZAR";
+
+export enum Themes {
+  Light = "Light",
+  Dark = "Dark"
+}

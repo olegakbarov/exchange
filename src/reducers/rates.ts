@@ -1,29 +1,21 @@
-import * as A from "../types/actions";
-import { ActionTypes as AT } from "../types/enums";
-import { RatesState } from "../types/states";
-import createReducer from "../utils/createReducer";
-import { Reducer } from "../types/redux";
+import { createReducer } from "typesafe-actions";
+import * as actions from "../actions/rates";
+import { CurrencyCode } from "src/types/enums";
+
+export type RatesState =
+  | {
+      [key in CurrencyCode]: {
+        [key in CurrencyCode]: number;
+      };
+    }
+  | {};
 
 const DEFAULT_STATE: RatesState = {};
 
-const update: Reducer<RatesState, A.UpdateRates> = (
-  state: RatesState,
-  { payload: { base, rates } }: A.UpdateRates
-) => ({
-  ...state,
-  [base]: rates
-});
-
-export default function rates(
-  state: RatesState = DEFAULT_STATE,
-  action: A.UpdateRates
-): RatesState {
-  return createReducer(
-    "rates",
-    {
-      [AT.UpdateRates]: update
-    },
-    state,
-    action
-  );
-}
+export default createReducer(DEFAULT_STATE).handleAction(
+  actions.updateRates,
+  (state, { payload }) => ({
+    ...state,
+    [payload.base]: payload.rates
+  })
+);

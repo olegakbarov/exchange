@@ -1,15 +1,7 @@
-import { ActionTypes as AT, CurrencyCode } from "../types/enums";
-import * as A from "../types/actions/account";
+import { CurrencyCode } from "../types/enums";
+import { createAction } from "typesafe-actions";
 
-export const updateAccount = (
-  currency: CurrencyCode,
-  value: number
-): A.UpdateAccount => {
-  return {
-    type: AT.UpdateAccount,
-    payload: {
-      currency,
-      value
-    }
-  };
-};
+export const updateAccount = createAction(
+  "UPDATE_ACCOUNT",
+  action => (curr: CurrencyCode, value: number) => action({ curr, value })
+);
