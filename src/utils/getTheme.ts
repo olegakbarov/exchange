@@ -15,9 +15,9 @@ export default function getTheme(name: Themes): Theme {
     case Themes.Dark:
       return {
         white: "#fff",
-        bgColor: "#f8f8fa",
+        bgColor: "#000",
         fgColor: "#fff",
-        buttonBgColor: "#000",
+        buttonBgColor: "charcoal",
         borderColor: "#fff"
       };
   }

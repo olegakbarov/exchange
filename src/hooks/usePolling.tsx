@@ -16,7 +16,7 @@ const usePolling = (config: PollingConfig) => {
   const performRequest = useCallback(
     () =>
       fetch(url, api)
-        .then(resp => {
+        .then((resp: Response) => {
           setPolling(true);
           return resp
             .json()
