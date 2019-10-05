@@ -1,7 +1,12 @@
 export type Theme = {
   white: string;
+
+  successGreen: string;
+  errorRed: string;
   bgColor: string;
   fgColor: string;
-  buttonBgColor: string;
   borderColor: string;
+
+  buttonBgColor: string;
+  inputBgColor: string;
 };
