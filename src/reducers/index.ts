@@ -1,12 +1,14 @@
 import account from "./account";
 import rates from "./rates";
 import userInput from "./userInput";
+import ui from "./ui";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   account,
   rates,
-  userInput
+  userInput,
+  ui
 });
 
 export default rootReducer;
