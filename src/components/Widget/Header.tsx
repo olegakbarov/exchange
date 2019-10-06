@@ -25,15 +25,7 @@ export default (p: IProps) => {
         You are {p.online ? "online" : "offline"}
       </Network>
       <ToggleThemeButton onClick={handleClick}>
-        {themeName === "Light" ? (
-          <>
-            <FiMoon /> Dark mode{" "}
-          </>
-        ) : (
-          <>
-            <FiSun /> Light mode{" "}
-          </>
-        )}
+        {themeName === "Light" ? <FiMoon /> : <FiSun />}
       </ToggleThemeButton>
     </HeaderRoot>
   );
@@ -51,9 +43,9 @@ const Network = styled("div")<{ online: boolean }>`
   &:before {
     content: "";
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
     background-color: ${p =>
       p.online ? p.theme.successGreen : p.theme.errorRed};
     margin-right: 5px;
@@ -63,15 +55,14 @@ const Network = styled("div")<{ online: boolean }>`
 const ToggleThemeButton = styled.button`
   border: none;
   background-color: ${p => p.theme.bgColor};
-  height: 17px;
-  font-size: 17px;
-  line-height: 21px;
-  vertical-align: baseline;
+  vertical-align: top;
   padding: 0;
   margin: 0;
   color: ${p => p.theme.fgColor};
+  align-content: center;
 
   & svg {
+    font-size: 17px;
     stroke: ${p => p.theme.fgColor};
   }
 

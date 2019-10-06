@@ -11,7 +11,6 @@ const DEFAULT_STATE = {
 
 export type UserInputState = typeof DEFAULT_STATE;
 
-// notice the type inference in the callbacks
 export default createReducer(DEFAULT_STATE)
   .handleAction(actions.setFromValue, (state, action) => ({
     ...state,
@@ -24,8 +23,4 @@ export default createReducer(DEFAULT_STATE)
   .handleAction(actions.setToCurr, (state, action) => ({
     ...state,
     toCurrency: action.payload
-  }))
-  .handleAction(actions.setToValue, (state, action) => ({
-    ...state,
-    toValue: action.payload
   }));

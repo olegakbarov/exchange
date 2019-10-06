@@ -6,7 +6,7 @@ const Button = styled.button`
   padding: 10px 30px;
   border-radius: 4px;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   color: ${p => p.theme.white};
 
   &:hover {

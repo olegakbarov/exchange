@@ -12,7 +12,9 @@ export default function getTheme(name: Themes): Theme {
         fgColor: "#000",
         buttonBgColor: "rgb(38, 132, 255)",
         borderColor: "#eaeaea",
-        inputBgColor: "#fff;"
+        inputBgColor: "#fff;",
+        shadowColor: "rgba(0, 0, 0, 0.3)",
+        baseFontSize: "12px"
       };
 
     case Themes.Dark:
@@ -22,9 +24,11 @@ export default function getTheme(name: Themes): Theme {
         errorRed: "#ff2828",
         bgColor: "#000",
         fgColor: "#fff",
-        buttonBgColor: "charcoal",
-        borderColor: "#fff",
-        inputBgColor: "#4d4d4d;"
+        buttonBgColor: "rgb(38, 132, 255)",
+        borderColor: "#454545",
+        inputBgColor: "#141414;",
+        shadowColor: "rgba(255, 255, 255, 0.3)",
+        baseFontSize: "12px"
       };
   }
 }
