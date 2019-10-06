@@ -42,10 +42,25 @@ export type AccountState = {
   [key in CurrencyCode]: number;
 };
 
-export default createReducer(DEFAULT_STATE).handleAction(
-  actions.updateAccount,
-  (state, { payload: { curr, value } }) => ({
-    ...state,
-    [curr]: value
-  })
-);
+export default createReducer(DEFAULT_STATE)
+  .handleAction(
+    actions.updateAccount,
+    (state, { payload: { curr, value } }) => ({
+      ...state,
+      [curr]: value
+    })
+  )
+  .handleAction(
+    actions.runTransaction,
+    (state, { payload: { from, to, amountFrom, amountTo } }) => {
+      if (state[from] >= amountFrom) {
+        return {
+          ...state,
+          [from]: state[from] - amountFrom,
+          [to]: state[to] + amountTo
+        };
+      } else {
+        return state;
+      }
+    }
+  );

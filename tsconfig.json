@@ -4,7 +4,10 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "preserve",
@@ -18,7 +21,9 @@
     "strictNullChecks": true,
     "pretty": true,
     "removeComments": true,
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -28,7 +33,10 @@
     "noEmit": true,
     "noUnusedLocals": false
   },
-  "include": ["src/types.d.ts", "vendor.d.ts", "src/**/*"],
+  "include": [
+    "vendor.d.ts",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",

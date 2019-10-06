@@ -8,6 +8,7 @@ import { BasicLayout } from "./components/Layout";
 import { Provider, useSelector } from "react-redux";
 import { Theme } from "./types/theme";
 import getTheme from "./utils/getTheme";
+import { setNetworkStatus } from "./actions/ui";
 
 // trickery required to get typed theme in props
 type ThemedModule = styledComponents.ThemedStyledComponentsModule<Theme>;
@@ -48,6 +49,16 @@ const App = () => {
 
 const ThemedApp = () => {
   const themeName = useSelector((state: RootState) => state.ui.themeName);
+
+  React.useEffect(() => {
+    window.addEventListener("offline", () => {
+      store.dispatch(setNetworkStatus(false));
+    });
+
+    window.addEventListener("online", () => {
+      store.dispatch(setNetworkStatus(true));
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={getTheme(themeName)}>

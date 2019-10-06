@@ -35,6 +35,8 @@ const usePolling = (config: PollingConfig) => {
   // perform initial request
   useEffect(() => {
     performRequest();
+    // we know what we do.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // start polling with interval

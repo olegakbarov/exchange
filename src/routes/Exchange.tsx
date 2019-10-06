@@ -12,12 +12,13 @@ const Exchange = () => {
 
   const [isPolling] = usePolling({
     url: `https://api.exchangeratesapi.io/latest?base=${userInput.fromCurrency}`,
+    interval: 10000,
     onSuccess: (resp: ApiResponse) => {
       dispatch(updateRates(resp));
     },
     onError: (err: Error) => console.error(err)
   });
 
-  return <Widget online={isPolling} />;
+  return <Widget isPolling={isPolling} />;
 };
 export default Exchange;

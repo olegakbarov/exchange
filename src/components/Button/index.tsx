@@ -12,6 +12,11 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 export default Button;
