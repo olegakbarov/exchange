@@ -6,7 +6,7 @@ import NumberFormat from "react-number-format";
 interface IProps {
   value: number;
   handleChange: (x: number) => void;
-  maxValue: number;
+  maxValue?: number;
   label?: string;
   disabled?: boolean;
 }
@@ -27,9 +27,8 @@ const CurrencyInput = React.memo(
       [handleChange]
     );
 
-    const isAllowed = (values: IValues) => {
-      return values.value <= maxValue;
-    };
+    const isAllowed = (values: IValues) =>
+      maxValue ? values.value <= maxValue : true;
 
     return (
       <Label>
@@ -49,7 +48,7 @@ const CurrencyInput = React.memo(
 );
 
 const StyledInput = styled(NumberFormat)`
-  font-size: 22px;
+  font-size: 17px;
   background-color: ${p => p.theme.inputBgColor};
   color: ${p => p.theme.fgColor};
   padding-top: 10px;

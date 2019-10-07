@@ -18,7 +18,8 @@ export default createReducer(DEFAULT_STATE)
   }))
   .handleAction(actions.setFromCurr, (state, action) => ({
     ...state,
-    fromCurrency: action.payload
+    fromCurrency: action.payload,
+    fromValue: 0
   }))
   .handleAction(actions.setToCurr, (state, action) => ({
     ...state,

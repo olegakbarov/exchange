@@ -15,15 +15,17 @@ interface IProps {
 }
 
 const Widget = (p: IProps) => {
-  const userInput = useSelector((state: RootState) => state.userInput);
+  const { fromCurrency, toCurrency, fromValue } = useSelector(
+    (state: RootState) => state.userInput
+  );
   const account = useSelector((state: RootState) => state.account);
-  const options = Object.keys(account);
+  const currencyCodes = Object.keys(account);
   const rates = useSelector((state: RootState) => state.rates);
   const online = useSelector((state: RootState) => state.ui.online);
   const dispatch = useDispatch();
 
   const updateFromValue = (x: number) => {
-    if (x <= account[userInput.fromCurrency]) {
+    if (x <= account[fromCurrency]) {
       dispatch(setFromValue(x));
     }
   };
@@ -33,14 +35,12 @@ const Widget = (p: IProps) => {
     dispatch(setFromCurr(code));
   };
 
-  const changeToCurr = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const updateToCurr = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const code = e.target.value as CurrencyCode;
     dispatch(setToCurr(code));
   };
 
   const isButtonDisabled = () => {
-    const { fromCurrency, fromValue, toCurrency } = userInput;
-
     if (!fromValue) {
       return true;
     } else if (!online) {
@@ -56,23 +56,21 @@ const Widget = (p: IProps) => {
     }
   };
 
-  const targetCurrencyPrice =
-    rates[userInput.fromCurrency] &&
-    rates[userInput.fromCurrency][userInput.toCurrency];
+  const targetCurrencyPrice = rates[fromCurrency]
+    ? rates[fromCurrency][toCurrency]
+    : 0;
 
-  const calculatedValue =
-    userInput.fromValue && userInput.fromValue * targetCurrencyPrice;
+  const formattedTargetValue = Number(
+    (fromValue * targetCurrencyPrice).toFixed(2)
+  );
+
+  const calculatedValue = fromValue && fromValue * targetCurrencyPrice;
 
   const handleTransaction = (
     _: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     dispatch(
-      runTransaction(
-        userInput.fromCurrency,
-        userInput.toCurrency,
-        userInput.fromValue,
-        userInput.fromValue * targetCurrencyPrice
-      )
+      runTransaction(fromCurrency, toCurrency, fromValue, formattedTargetValue)
     );
 
     dispatch(setFromValue(0));
@@ -84,8 +82,7 @@ const Widget = (p: IProps) => {
       <FormattedText>
         {targetCurrencyPrice ? (
           <span>
-            1 {userInput.fromCurrency} = {targetCurrencyPrice}{" "}
-            {userInput.toCurrency}
+            1 {fromCurrency} = {targetCurrencyPrice} {toCurrency}
           </span>
         ) : (
           "Loading..."
@@ -94,13 +91,13 @@ const Widget = (p: IProps) => {
       <InputRow>
         <CurrencyInput
           disabled={!targetCurrencyPrice}
-          value={userInput.fromValue}
+          value={fromValue}
           handleChange={updateFromValue}
-          maxValue={account[userInput.fromCurrency] || 0}
+          maxValue={account[fromCurrency] || 0}
         />
         <SelectWrapper>
-          <Select value={userInput.fromCurrency} onChange={changeFromCurr}>
-            {options
+          <Select value={fromCurrency} onChange={changeFromCurr}>
+            {currencyCodes
               .filter((code: string) => account[code] > 0)
               .map((code: string) => (
                 <option key={code}>{code}</option>
@@ -110,23 +107,39 @@ const Widget = (p: IProps) => {
       </InputRow>
       <InputRow>
         <CurrencyInput
+          disabled
           value={calculatedValue}
           handleChange={() => calculatedValue}
-          maxValue={account[userInput.fromCurrency] || 0}
         />
         <SelectWrapper>
-          <Select value={userInput.toCurrency} onChange={changeToCurr}>
-            {options.map((code: string) => (
+          <Select value={toCurrency} onChange={updateToCurr}>
+            {currencyCodes.map((code: string) => (
               <option key={code}>{code}</option>
             ))}
           </Select>
         </SelectWrapper>
       </InputRow>
       <FormattedText>
-        You are about to exchange {userInput.fromValue} {userInput.fromCurrency}{" "}
-        to {userInput.fromValue && userInput.fromValue * targetCurrencyPrice}{" "}
-        {userInput.toCurrency}
+        You are about to exchange {fromValue} {fromCurrency} to{" "}
+        {formattedTargetValue} {toCurrency}
       </FormattedText>
+      <Balances>
+        <h3>Your balance:</h3>
+        <table>
+          <tbody>
+            {Object.keys(account).map(k => {
+              return (
+                account[k] > 0 && (
+                  <tr key={k}>
+                    <td>{k}</td>
+                    <td>{account[k]}</td>
+                  </tr>
+                )
+              );
+            })}
+          </tbody>
+        </table>
+      </Balances>
       <StyledButton disabled={isButtonDisabled()} onClick={handleTransaction}>
         Exchange
       </StyledButton>
@@ -145,7 +158,7 @@ const WidgetRoot = styled.div`
 const FormattedText = styled.div`
   font-size: ${p => p.theme.baseFontSize};
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0 20px;
 `;
 
 const InputRow = styled.div`
@@ -154,6 +167,22 @@ const InputRow = styled.div`
 
   > * {
     width: 48%;
+  }
+`;
+
+const Balances = styled.div`
+  font-size: ${p => p.theme.baseFontSize};
+
+  table {
+    width: 100%;
+  }
+
+  table tbody tr {
+    border-bottom: 1px dotted black;
+  }
+
+  table tbody tr td :nth-child(2) {
+    text-align: right;
   }
 `;
 

@@ -1,13 +1,12 @@
 import styled from "styled-components/macro";
 
 const Select = styled.select`
-  font-size: 22px;
+  font-size: 17px;
   display: block;
   width: 100%;
   border-radius: 4px;
   padding-top: 10px;
   padding-bottom: 10px;
-  /* height: 33px; */
   background-color: ${p => p.theme.inputBgColor};
   border: none;
   color: ${p => p.theme.fgColor};
