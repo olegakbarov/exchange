@@ -64,15 +64,12 @@ const Widget = (p: IProps) => {
     (fromValue * targetCurrencyPrice).toFixed(2)
   );
 
-  const calculatedValue = fromValue && fromValue * targetCurrencyPrice;
+  const transactionResultAmount = fromValue && fromValue * targetCurrencyPrice;
 
   const handleTransaction = (
     _: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    dispatch(
-      runTransaction(fromCurrency, toCurrency, fromValue, formattedTargetValue)
-    );
-
+    dispatch(runTransaction(fromCurrency, toCurrency, fromValue, rates));
     dispatch(setFromValue(0));
   };
 
@@ -108,8 +105,8 @@ const Widget = (p: IProps) => {
       <InputRow>
         <CurrencyInput
           disabled
-          value={calculatedValue}
-          handleChange={() => calculatedValue}
+          value={transactionResultAmount}
+          handleChange={() => transactionResultAmount}
         />
         <SelectWrapper>
           <Select value={toCurrency} onChange={updateToCurr}>

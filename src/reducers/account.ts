@@ -1,6 +1,7 @@
 import { createReducer } from "typesafe-actions";
 import * as actions from "../actions/account";
 import { CurrencyCode } from "../types/enums";
+import formatNumber from "../utils/formatNumber";
 
 const DEFAULT_STATE: Record<CurrencyCode, number> = {
   USD: 100,
@@ -42,25 +43,19 @@ export type AccountState = {
   [key in CurrencyCode]: number;
 };
 
-export default createReducer(DEFAULT_STATE)
-  .handleAction(
-    actions.updateAccount,
-    (state, { payload: { curr, value } }) => ({
-      ...state,
-      [curr]: value
-    })
-  )
-  .handleAction(
-    actions.runTransaction,
-    (state, { payload: { from, to, amountFrom, amountTo } }) => {
-      if (state[from] >= amountFrom) {
-        return {
-          ...state,
-          [from]: state[from] - amountFrom,
-          [to]: state[to] + amountTo
-        };
-      } else {
-        return state;
-      }
+export default createReducer(DEFAULT_STATE).handleAction(
+  actions.runTransaction,
+  (state, { payload: { from, to, amountFrom, rates } }) => {
+    if (state[from] >= amountFrom) {
+      const result = amountFrom * rates[from][to];
+
+      return {
+        ...state,
+        [from]: Number((state[from] - amountFrom).toFixed(2)),
+        [to]: Number((state[to] + result).toFixed(2))
+      };
+    } else {
+      return state;
     }
-  );
+  }
+);
