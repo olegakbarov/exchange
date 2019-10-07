@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/macro";
 import { RootState } from "../../reducers";
-import { setFromValue, setFromCurr, setToCurr } from "../../actions/userInput";
+import { setFromValue, setFromCurr, setToCurr } from "../../actions/input";
 import { runTransaction } from "../../actions/account";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../Button";
@@ -16,7 +16,7 @@ interface IProps {
 
 const Widget = (p: IProps) => {
   const { fromCurrency, toCurrency, fromValue } = useSelector(
-    (state: RootState) => state.userInput
+    (state: RootState) => state.input
   );
   const account = useSelector((state: RootState) => state.account);
   const currencyCodes = Object.keys(account);
@@ -64,8 +64,6 @@ const Widget = (p: IProps) => {
     (fromValue * targetCurrencyPrice).toFixed(2)
   );
 
-  const transactionResultAmount = fromValue && fromValue * targetCurrencyPrice;
-
   const handleTransaction = (
     _: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -105,8 +103,8 @@ const Widget = (p: IProps) => {
       <InputRow>
         <CurrencyInput
           disabled
-          value={transactionResultAmount}
-          handleChange={() => transactionResultAmount}
+          value={formattedTargetValue}
+          handleChange={() => formattedTargetValue}
         />
         <SelectWrapper>
           <Select value={toCurrency} onChange={updateToCurr}>
@@ -116,10 +114,10 @@ const Widget = (p: IProps) => {
           </Select>
         </SelectWrapper>
       </InputRow>
-      <FormattedText>
+      {/* <FormattedText>
         You are about to exchange {fromValue} {fromCurrency} to{" "}
         {formattedTargetValue} {toCurrency}
-      </FormattedText>
+      </FormattedText> */}
       <Balances>
         <h3>Your balance:</h3>
         <table>

@@ -24,4 +24,19 @@ describe("Currency reducer", () => {
 
     expect(accountReducer(state, action)).toEqual(newState);
   });
+
+  it("Should correctly update state with floats", () => {
+    const ratesState = {
+      USD: { GBP: 1.01 }
+    };
+    const action = actions.runTransaction("USD", "GBP", 0.1, ratesState);
+    const newState = {
+      USD: 99.9,
+      GBP: 200.1,
+      EUR: 300,
+      ISK: 0
+    };
+
+    expect(accountReducer(state, action)).toEqual(newState);
+  });
 });

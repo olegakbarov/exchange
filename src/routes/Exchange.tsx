@@ -8,10 +8,12 @@ import { RootState } from "../reducers";
 
 const Exchange = () => {
   const dispatch = useDispatch();
-  const userInput = useSelector((state: RootState) => state.userInput);
+  const fromCurrency = useSelector(
+    (state: RootState) => state.input.fromCurrency
+  );
 
   const [isPolling] = usePolling({
-    url: `https://api.exchangeratesapi.io/latest?base=${userInput.fromCurrency}`,
+    url: `https://api.exchangeratesapi.io/latest?base=${fromCurrency}`,
     interval: 10000,
     onSuccess: (resp: ApiResponse) => {
       dispatch(updateRates(resp));

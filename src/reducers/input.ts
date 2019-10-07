@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import * as actions from "../actions/userInput";
+import * as actions from "../actions/input";
 import { CurrencyCode } from "src/types/enums";
 
 const DEFAULT_STATE = {

@@ -1,7 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import * as actions from "../actions/account";
 import { CurrencyCode } from "../types/enums";
-import formatNumber from "../utils/formatNumber";
 
 const DEFAULT_STATE: Record<CurrencyCode, number> = {
   USD: 100,
