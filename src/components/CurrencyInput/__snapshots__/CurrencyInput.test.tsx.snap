@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyInput Render snapshots are equal 1`] = `
+.c0 {
+  font-size: 17px;
+  background-color: #fff;
+  color: #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+  border-radius: 4px;
+  text-align: right;
+  border: none;
+  width: 100%;
+  margin: 7px 0;
+}
+
+<input
+  class="c0"
+  type="text"
+  value="39.01"
+/>
+`;
+
+exports[`CurrencyInput Shallow render snapshots are equal 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

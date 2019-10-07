@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Render snapshots are equal 1`] = `
+.c0 {
+  width: 100%;
+  background-color: rgb(38,132,255);
+  padding: 10px 30px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.c0:hover {
+  cursor: pointer;
+}
+
+.c0:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+<button
+  class="c0"
+>
+  Click
+</button>
+`;
+
+exports[`Button Shallow render snapshots are equal 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "Button-sc-14a3f2p-0",
+        "isStatic": false,
+        "rules": Array [
+          "width:100%;background-color:",
+          [Function],
+          ";padding:10px 30px;border-radius:4px;border:none;font-size:16px;color:",
+          [Function],
+          ";&:hover{cursor:pointer;}&:disabled{opacity:0.5;cursor:not-allowed;}",
+        ],
+      },
+      "displayName": "Button",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "Button-sc-14a3f2p-0",
+      "target": "button",
+      "toString": [Function],
+      "usesTheme": true,
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+  onClick={[Function]}
+  theme={
+    Object {
+      "baseFontSize": "12px",
+      "bgColor": "#f8f8fa",
+      "borderColor": "#eaeaea",
+      "buttonBgColor": "rgb(38, 132, 255)",
+      "errorRed": "#ff2828",
+      "fgColor": "#000",
+      "inputBgColor": "#fff;",
+      "shadowColor": "rgba(0, 0, 0, 0.3)",
+      "successGreen": "#56d256",
+      "white": "#fff",
+    }
+  }
+>
+  Click
+</StyledComponent>
+`;

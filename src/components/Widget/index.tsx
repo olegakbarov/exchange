@@ -114,10 +114,6 @@ const Widget = (p: IProps) => {
           </Select>
         </SelectWrapper>
       </InputRow>
-      {/* <FormattedText>
-        You are about to exchange {fromValue} {fromCurrency} to{" "}
-        {formattedTargetValue} {toCurrency}
-      </FormattedText> */}
       <Balances>
         <h3>Your balance:</h3>
         <table>

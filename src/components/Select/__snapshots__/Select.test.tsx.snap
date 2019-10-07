@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select Render snapshots are equal 1`] = `
+.c0 {
+  font-size: 17px;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #fff;
+  border: none;
+  color: #000;
+  width: 100%;
+  margin: 7px 0;
+  -webkit-appearance: none;
+  padding-left: 5px;
+}
+
+<select
+  class="c0"
+>
+  <option>
+    'ABC'
+  </option>
+</select>
+`;
+
+exports[`Select Shallow render snapshots are equal 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

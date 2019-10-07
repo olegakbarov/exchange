@@ -7,7 +7,6 @@ interface IProps {
   value: number;
   handleChange: (x: number) => void;
   maxValue?: number;
-  label?: string;
   disabled?: boolean;
 }
 
@@ -18,7 +17,7 @@ interface IValues {
 }
 
 const CurrencyInput = React.memo(
-  ({ value, label, handleChange, maxValue, disabled }: IProps) => {
+  ({ value, handleChange, maxValue, disabled }: IProps) => {
     const onChange = React.useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
         const nextVal = Number(e.target.value);
@@ -31,18 +30,15 @@ const CurrencyInput = React.memo(
       maxValue ? values.value <= maxValue : true;
 
     return (
-      <Label>
-        {label && label}
-        <StyledInput
-          disabled={disabled}
-          allowNegative={false}
-          decimalScale={2}
-          allowLeadingZeros={false}
-          value={value}
-          onChange={onChange}
-          isAllowed={isAllowed}
-        />
-      </Label>
+      <StyledInput
+        disabled={disabled}
+        allowNegative={false}
+        decimalScale={2}
+        allowLeadingZeros={false}
+        value={value}
+        onChange={onChange}
+        isAllowed={isAllowed}
+      />
     );
   }
 );
@@ -59,12 +55,6 @@ const StyledInput = styled(NumberFormat)`
   border: none;
   width: 100%;
   margin: 7px 0;
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
 `;
 
 export default CurrencyInput;
